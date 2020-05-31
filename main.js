@@ -19,6 +19,7 @@ let storage = {
         this.displayValue = number;
         let display = document.querySelector('#display');
         display.textContent = this.displayValue;
+        handleDotButton(this.displayValue);
     },
 }
 
@@ -27,9 +28,14 @@ numberButtons.forEach(button => {
     button.addEventListener('click', addValueToDisplay)
 });
 
+
+// BUG: cannot add 0s after . because conversion to number removes unnecessary 0 at the end.
+// todo: fix this by using string representation
+// todo: implement calculation order myself
 function addValueToDisplay(e) {
     let value = e.target.dataset.value;
-    storage.setDisplay(+(storage.getDisplay().toString() + value));
+    let current = storage.getDisplay().toString();
+    storage.setDisplay(+(current + value));
 }
 
 
@@ -42,7 +48,6 @@ function prepareOperation(e) {
     let operand = storage.getDisplay();
     let operator = e.target.dataset.value;
     storage.calculations.push(operand, operator);
-    console.log(storage.calculations.join(''));
     storage.setDisplay(0);
 }
 
@@ -72,6 +77,40 @@ function clearCalculator(e) {
     storage.calculations = [];
     storage.setDisplay(0);
 }
+
+
+let btnDot = document.querySelector('#btnDot');
+btnDot.addEventListener('click', addDot);
+
+function addDot(e) {
+    let oldDisplay = storage.getDisplay();
+    let newDisplay = oldDisplay + '.'
+    storage.setDisplay(newDisplay);
+}
+
+function handleDotButton(currentNumber) {
+    let btnDot = document.querySelector('#btnDot');
+    if (currentNumber.toString().includes('.')) {
+        btnDot.disabled = true;
+    } else {
+        btnDot.disabled = false;
+    }
+}
+
+let btnBackspace = document.querySelector('#btnBackspace');
+btnBackspace.addEventListener('click', removeLastInput);
+
+function removeLastInput() {
+    let current = storage.getDisplay().toString();
+    if (current.length > 0) {
+        let updated = current.slice(0,-1);
+        if(updated == '') {
+            updated = 0;
+        }
+        storage.setDisplay(updated);
+    }
+}
+
 
 
 

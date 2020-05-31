@@ -1,0 +1,46 @@
+#calculator {
+	width: 200px;
+	height: 240px;
+	
+	position: absolute;
+	top:0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+  	
+    margin: auto;
+    margin-bottom: 40%;
+
+    border-style: solid;
+    border-radius: 10px;
+    border-width: 5px;
+    border-color: lightgray;
+
+    text-align: center;
+}
+
+#display {
+    margin: 10px;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 10px;
+}
+
+#numbers {
+    margin-top: 10px;
+}
+
+#numbers button {
+    /* background-color: lightblue; */
+    color: darkblue
+}
+
+#operators button {
+    /* background-color: lightgreen; */
+    color: purple;
+}
+
+#other button {
+    /* background-color: orange; */
+    color: black;
+}

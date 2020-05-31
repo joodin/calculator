@@ -1,24 +1,37 @@
 <!DOCTYPE html>
+
 <head>
     <title>Calculator</title>
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
+
 <body>
     <div id=calculator>
+        Calculator
         <div id=display>
             0
         </div>
         <div id=numbers>
+            <div id=firstRow>
+                <button id='btnSeven' data-value='7'>7</button>
+                <button id='btnEight' data-value='8'>8</button>
+                <button id='btnNine' data-value='9'>9</button>
+            </div>
+            <div id=secondRow>
+                
+                <button id='btnFour' data-value='4'>4</button>
+                <button id='btnFive' data-value='5'>5</button>
+                <button id='btnSix' data-value='6'>6</button>
+                
+            </div>
+            <div id=thirdRow>
+                
+                <button id='btnOne' data-value='1'>1</button>
+                <button id='btnTwo' data-value='2'>2</button>
+                <button id='btnThree' data-value='3'>3</button>
+            </div>
             <button id='btnZero' data-value='0'>0</button>
-            <button id='btnOne' data-value='1'>1</button>
-            <button id='btnTwo' data-value='2'>2</button>
-            <button id='btnThree' data-value='3'>3</button>
-            <button id='btnFour' data-value='4'>4</button>
-            <button id='btnFive' data-value='5'>5</button>
-            <button id='btnSix' data-value='6'>6</button>
-            <button id='btnSeven' data-value='7'>7</button>
-            <button id='btnEight' data-value='8'>8</button>
-            <button id='btnNine' data-value='9'>9</button>
+            <button id='btnDot' data-value='.'>.</button>
         </div>
         <div id=operators>
             <button id='btnAdd' data-value='+'>+</button>
@@ -29,6 +42,7 @@
         <div id=other>
             <button id='btnOperate'>=</button>
             <button id='btnClear'>Clear</button>
+            <button id='btnBackspace' data-value='<-'><-</button>
         </div>
     </div>
 
