@@ -1,12 +1,8 @@
 'use strict'
 
 
-// todo: write something to handle calculations
+// todo: add a line to show the currently done calculation
 // todo: handle divide by 0;
-
-// BUG: cannot add 0s after . because conversion to number removes unnecessary 0 at the end.
-// todo: fix this by using string representation
-// todo: implement calculation order myself
 
 let numPad = document.querySelector('#numbers');
 let numberButtons = numPad.querySelectorAll('button');
@@ -14,7 +10,7 @@ let numberButtons = numPad.querySelectorAll('button');
 
 let storage = {
     calculations: [],
-    displayValue: 0,
+    displayValue: "",
 
     getDisplay() {
         return this.displayValue;
@@ -56,7 +52,7 @@ function btnPressOperator(e) {
 function prepareOperation(operator) {
     let operand = storage.getDisplay();
     storage.calculations.push(operand, operator);
-    storage.setDisplay(0);
+    storage.setDisplay("");
 }
 
 
@@ -66,11 +62,9 @@ btnOperate.addEventListener('click', executeOperation);
 function executeOperation() {
     let operand = storage.getDisplay();
     storage.calculations.push(operand);
-    console.log(storage.calculations);
     let result = execute(storage.calculations.join(''));
-    console.log(storage.calculations.join(''));
     storage.calculations = [];
-    if (!result) result = 0;
+    if (!result) result = "";
     storage.setDisplay(result);
 }
 
@@ -84,7 +78,7 @@ btnClear.addEventListener('click', clearCalculator);
 
 function clearCalculator(e) {
     storage.calculations = [];
-    storage.setDisplay(0);
+    storage.setDisplay("");
 }
 
 function addDot() {
@@ -109,9 +103,6 @@ function removeLastInput() {
     let current = storage.getDisplay().toString();
     if (current.length > 0) {
         let updated = current.slice(0, -1);
-        if (updated == '') {
-            updated = 0;
-        }
         storage.setDisplay(updated);
     }
 }
@@ -133,5 +124,4 @@ function handleKeyPress(event) {
     } else if (event.key == 'Enter') {
         executeOperation();
     }
-    console.log(event.key)
 }
